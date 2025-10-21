@@ -1,0 +1,8 @@
+Cada nodo representa um ponto do grafo
+
+Tipo: estado único (começa no nodo s)
+Representação dos estados: nodos
+Estado atual: nodo s
+Objetivo: nodo t
+Operadores: linhas/caminhos entre nodos 
+Custo: distância entre nodo
