@@ -1,0 +1,17 @@
+Exercício 1
+
+Tipo de Problema: Problema de procura de estado único (começa na estação do Aeroporto)
+Estado inicial: Estação do Aeroporto
+Estado final: Estação do Lumiar
+Operadores: Mudança de estação/linha
+Custo: Tempo estimado para percorrer cada espaço entre as estações
+
+----------------------------------------------------------------------
+
+Exercício 2
+
+Tipo de Problema: Problema de procura de estado único (os discos estão presentes na torre C)
+Estado inicial: Torre C (todos os discos)
+Estado final: Torre A (todos os discos)
+Operadores: Mover um disco para outra torre, desde que o disco movido não seja maior que o disco presente na respetiva torre
+Custo: Número de movimentos, neste caso, vamos assumir cada movimento de um disco para outra torre com um custo de 1 unidade

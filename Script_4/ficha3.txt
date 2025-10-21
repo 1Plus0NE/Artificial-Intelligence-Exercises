@@ -1,0 +1,46 @@
+Ficha 3
+
+Tipo de Problema: estado único (começa com 0 litros cada balde)
+Estado inicial: baldes vazios  
+Estado final: balde1 com 2 litros e balde2 vazio
+Operadores: Encher, esvaziar e/ou transferir baldes
+Custo: Número de operações
+
+            Pesquisa em árvore
+
+                    (0,0)
+                    /   \
+                   /     \ 
+                  /       \
+                 /         \       
+               (4,0)      (0,3)                 | Lado esquerdo: Enche balde1, Lado direito: Enche balde2
+               / | \         
+              /  |  \   
+             /   |   \
+            /    |    \
+       (0,0)   (4,3)  (1,3)                     | Lado esquerdo: Esvazia baldes, Meio: Enche balde2, Lado direito: Transfere balde1 para balde2
+                / \
+               /   \
+              /     \
+             /       \
+           (0,3)     (4,0)                      | Lado esquerdo: Esvazia balde1, Lado direito: Esvazia balde2
+           / | \
+          /  |  \
+         /   |   \
+        /    |    \
+     (4,3) (0,0)  (3,0)                         | Lado Esquerdo: Enche balde2, Meio: Esvazia baldes, Lado direito: Transfere balde2 para balde1
+                  / | \
+                 /  |  \
+                /   |   \
+               /    |    \
+            (4,0) (0,3)  (3,3)                  | Lado Esquerdo: Enche balde1, Meio: Tranfere balde1 para balde2, Lado direito: Enche balde2
+                         / | \
+                        /  |  \
+                       /   |   \
+                      /    |    \
+                   (0,3) (3,0)  (4,2)           | Lado Esquerdo: Esvazia balde1, Meio: Esvazia balde2, Lado direito: Transfere balde2 para balde1
+                                / | \
+                               /  |  \
+                              /   |   \
+                             /    |    \
+                          (0,2) (3,3)  (4,0)    | Lado Esquerdo: Esvazia balde 1, Meio: Transfere balde1 para balde2, Lado direito: Esvazia balde2
