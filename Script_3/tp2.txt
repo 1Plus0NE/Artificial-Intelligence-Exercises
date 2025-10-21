@@ -1,0 +1,36 @@
+Ficha Teórico-Prática n.º 2
+
+Estado Inicial: Gualtar
+Estado Objetivo: Nogueiró
+
+----------------------------------------------------------------------------------------
+i. Greedy (Escolhe o caminho com menor valor da heuristica/função de estima definida)
+
+Gualtar -> S.Vitor       -> f(n) = 2 (X) 2 < 7
+Gualtar -> Este S.Mamede -> f(n) = 7
+
+S.Vitor -> S.Vicente -> Nogueiró 
+Custo: 8 + 6 + 8 = 22
+
+Caminho: Gualtar -> S.Vitor -> S.Vicente -> Nogueiró
+----------------------------------------------------------------------------------------
+ii. A* (A star)
+
+ g(n) + h(n)
+custo + função de estima
+
+Para o g(n) temos que é o somatório do custo das distâncias
+Para o h(n) é apenas a função de estima, i.e, a heuristica
+
+Gualtar -> S.Vitor       = 8 + 2 = 10 (X)
+Gualtar -> Este S.Mamede = 6 + 7 = 13
+
+S.Vitor -> S.Vicente = 8 + 6 + 6 = 20, como 20 > 13 em Gualtar -> Este S.Mamede, vamos testar este caminho
+
+Este S.Mamede -> Sobreposta = 6 + 3 + 4 = 13 (X) 13
+Este S.Mamede -> Lamaçães   = 6 + 8 + 4 = 18
+
+Sobreposta -> Nogueiró = 6 + 3 + 6 + 0 = 15 (Solução)
+
+Caminho: Gualtar -> Este S.Mamede -> Sobreposta -> Nogueiró
+----------------------------------------------------------------------------------------

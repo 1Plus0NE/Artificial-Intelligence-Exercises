@@ -1,0 +1,62 @@
+i. 
+
+Tipo de Problema: Estado único (começa em Elvas)
+Representação do estado: cidades
+Estado atual: Elvas (ou ponto de partido, se não for especificado)
+Estado objetivo: Lisboa
+Operadores: trajeto entre as cidades
+Custo: distância entre as cidades
+----------------------------------------------------------------------------------------
+ii. Greedy (Escolhe o caminho com menor valor da heuristica/função de estima definida)
+
+Elvas -> Alandroal -> f(n) = 180 (X) 180 < 220 < 250
+Elvas -> Arraiolos -> f(n) = 220
+Elvas -> Borba     -> f(n) = 250
+
+Alandroal -> Redondo -> Monsaraz -> Barreiro
+Barreiro -> Palmela           -> f(n) = 85
+Barreiro -> Baixa da Banheiro -> f(n) = 33 (X) 33 < 85
+
+Barreiro -> Moita -> Alcochete -> Lisboa
+Custo: 40 + 25 + 30 + 120 + 5 + 7 + 20 + 20 = 267 
+----------------------------------------------------------------------------------------
+iii. A* (A star)
+
+ g(n) + h(n)
+custo + função de estima
+
+Para o g(n) temos que é o somatório do custo das distâncias
+Para o h(n) é apenas a função de estima 
+
+
+Elvas -> Alandroal = 40 + 180 = 220 (X) 
+Elvas -> Arraoilos = 50 + 220 = 270
+Elvas -> Borba     = 15 + 250 = 265
+
+Alandroal -> Redondo   = 40 + 25 + 170           = 235
+Redondo   -> Monsaraz  = 40 + 25 + 30 + 120      = 215
+Monsaraz  -> Barreiro  = 40 + 25 + 30 + 120 + 30 = 245
+
+Barreiro -> Palmela           = 40 + 25 + 30 + 120 + 25 + 85 = 325
+Barreiro -> Baixa da Banheira = 40 + 25 + 30 + 120 + 5 + 33  = 253 <- menos custo comparado com Palmela
+
+Baixa da Banheira -> Moita = 40 + 25 + 30 + 120 + 5 + 7 + 35      = 262
+Moita -> Alcochete         = 40 + 25 + 30 + 120 + 5 + 7 + 20 + 26 = 273
+
+Como Moita -> Alcochete é maior que Elvas -> Borba, então vamos testar esse caminho
+
+Borba    -> Estremoz     = 15 + 15 + 145                    = 175
+Estremoz -> Evora        = 15 + 15 + 40 + 95                = 165
+Evora    -> Montemor     = 15 + 15 + 40 + 20 + 70           = 160
+Montemor -> Vendas Novas = 15 + 15 + 40 + 20 + 15 + 45      = 150
+Vendas Novas -> Lisboa   = 15 + 15 + 40 + 20 + 15 + 45 + 50 = 155 (Solução)
+----------------------------------------------------------------------------------------
+iv.
+
+A estratégia de pesquisa informada A* (a estrela) tem um tempo de computação maior, mas 
+é o que oferece a melhor solução em termos de custo.
+----------------------------------------------------------------------------------------
+v. 
+
+Implementação de uma função que penalize um respetivo nodo, afetando assim
+a estratégia utilizada para determinar o caminho.

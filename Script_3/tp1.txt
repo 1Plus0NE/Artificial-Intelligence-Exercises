@@ -1,0 +1,57 @@
+Ficha Teórico-Prática n.º 1                                      
+                                                                 
+Nodos objetivo: G e L                                            
+                                                                 
+i. Algoritmo de procura em profundidade                          
+                                                                 
+a)                                                              
+                                                                 
+Ordem de expansão dos nós:                                       
+A -> B -> D -> H -> I -> E -> J -> K -> C -> F (-> L)
+
+O L não consta da expansão, isto é, vai até o F
+Para em L, uma vez que L é um nodo objetivo
+
+b)
+
+Solução:
+A -> C -> F -> L 
+---------------------------------------------------------------
+ii. Algoritmo de procura em largura
+
+a)
+
+Ordem de expansão dos nós:
+A -> B -> C -> D -> E -> F -> G
+
+Para em G, uma vez que G é um nodo objetivo
+
+b)
+
+Solução:
+A -> C -> G
+---------------------------------------------------------------
+iii. Algoritmo de procura de custo uniforme
+
+a)
+
+Cálculo:
+
+A -> B = 0 + 2 = 2, 0 pois A não tem custo
+A -> C = 0 + 3 = 3
+B -> D = 2 + 2 = 4
+B -> E = 2 + 3 = 5
+C -> F = 3 + 2 = 5
+C -> G = 3 + 1 = 4
+
+Ordem de expansão dos nós:
+A -> B -> C -> G
+
+Para em G, uma vez que G é um nodo objetivo
+
+b)
+
+Solução:
+A -> C -> G
+---------------------------------------------------------------
+iv. b) Ocupa menos espaço em memória
