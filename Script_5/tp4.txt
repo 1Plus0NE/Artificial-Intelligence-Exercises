@@ -1,0 +1,16 @@
+Ficha Prática n.º 4
+
+i.
+
+Tipo de Problema: Problema de procura de estado único 
+Representação: 
+    Tabuleiro sendo uma matriz de 3x3 
+    Células com X ou O
+Estado inicial: Vazio
+Estado final: 3 simbolos X/O na horizontal/vertical/diagonal ou empate com o tabuleiro preenchido
+Operadores: X se for o jogador 1, O se for o jogador 2
+Custo: Número de movimentos
+
+ii. 
+
+Algoritmo minimax ou Algoritmo minimax alpha-beta pruning para ter uma melhor performance

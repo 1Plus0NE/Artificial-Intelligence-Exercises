@@ -1,0 +1,40 @@
+Exercício 1
+
+a.
+
+Valor do ramo do lado esquerdo:
+
+Sendo o min a jogar, este irá escolher o menor valor, começando pelo ramo cujo valor é 3, irá selecionar o respetivo valor.
+Em seguida, irá comparar com os diferentes valores 12 e 8, sendo o 3 o menor destes valores o valor do ramo do lado esquerdo é 3.
+
+---
+
+Valor do ramo do meio:
+
+Sendo o min a jogar, este irá escolher o menor valor, começando pelo primeiro ramo cujo valor é 2, irá selecionar o respetivo valor.
+Em seguida, irá comparar com os diferentes valores 4 e 6, sendo o 3 o menor destes valores, o valor do ramo do meio é 2.
+
+---
+
+Valor do ramo do lado direito:
+
+Seguindo a mesma lógica, o primeiro valor selecionado é 14, sendo comparado com o 5, que passa a ser atualizado o menor valor
+e por fim comparado com o 2, pelo que é o menor valor do ramo do lado direito, sendo assim o valor deste ramo.
+
+---
+
+Para o valor do ramo do topo, este refere-se à escolha do máximo, para tal, será escolhido o maior valor dos ramos.
+
+Comparando o ramo do lado esquerdo com o do meio e do lado direito, temos que o valor do ramo do topo é 3, uma vez que
+é a melhor jogada para o máximo.
+
+-----------------------------------------------------------
+
+b.
+
+O caminho do jogador maximizador é através do ramo do lado esquerdo, uma vez que os outros ramos possuem um valor inferior a 3,
+mostram ser piores caminhos para que o maximizador tenha o melhor resultado.
+
+c.
+
+Ver imagem
