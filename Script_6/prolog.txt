@@ -1,0 +1,15 @@
+O seguinte operador ":-" pode ser lido como "se"
+O seguinte operador "," pode ser lida como "e"
+--------------------------------------------------
+Seja um predicado:
+
+    pai(pedro, raquel)
+
+que é lido como, pedro é pai da raquel.
+
+E sendo:
+
+    ?-pai(P, raquel)
+
+P é uma variavel, uma vez que, todas as variáveis começam em maiúscula.
+--------------------------------------------------
