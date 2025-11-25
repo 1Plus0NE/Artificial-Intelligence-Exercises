@@ -86,3 +86,83 @@ comprimento([], 0).
 comprimento([_|T], Comp) :-
     comprimento(T, Result),
     Comp is 1 + Result.
+
+%----------------------------------------------------------------------------------------------------------------------------
+% x. Construir a extensão do predicado «diferentes» que calcula a quantidade de elementos diferentes existentes numa lista;
+%----------------------------------------------------------------------------------------------------------------------------
+
+pertence(X, [X|_]).
+pertence(X, [_|T]) :-
+    pertence(X, T).
+
+diferentes([], 0).
+
+diferentes([H|T], N) :-
+    pertence(H, T),             % H aparece na cauda, não contar
+    diferentes(T, N).
+
+diferentes([H|T], N) :-
+    \+ pertence(H, T),          % H não aparece, contar +1
+    diferentes(T, N1),
+    N is N1 + 1.
+
+%--------------------------------------------------------------------------------------------------------------
+% xi. Construir a extensão do predicado «apaga1» que apaga a primeira ocorrência de um elemento de uma lista;
+%--------------------------------------------------------------------------------------------------------------
+
+apaga1(_, [], []).
+apaga1(X, [X|T], T).
+apaga1(X, [H|T], [H|R]) :-
+    apaga1(X, T, R).
+    
+
+%----------------------------------------------------------------------------------------------------------------
+% xii. Construir a extensão do predicado «apagaT» que apaga todas as ocorrências de um dado elemento numa lista;
+%----------------------------------------------------------------------------------------------------------------
+
+apagaT(_, [], []).
+apagaT(X, [X|T], List) :-
+    apagaT(X, T, List).
+
+apagaT(X, [H|T], [H|R]) :-
+    X \= H,
+    apagaT(X, T, R).        % mantém H
+
+%--------------------------------------------------------------------------------------------------------
+% xiii. Construir a extensão do predicado «adicionar» que insere um elemento numa lista, sem o repetir;
+%--------------------------------------------------------------------------------------------------------
+
+pertence(X, [X|_]).
+pertence(X, [_|T]) :-
+    pertence(X, T).
+
+adicionar(X, L, L) :-
+    pertence(X, L).
+
+adicionar(X, L, [X|L]) :-
+    \+ pertence(X, L).
+
+%-------------------------------------------------------------------------------------------------------------------------------------------
+% xiv. Construir a extensão do predicado «concatenar», que resulta na concatenação dos elementos da lista L1 com os elementos da lista L2;
+%-------------------------------------------------------------------------------------------------------------------------------------------
+
+concat([], L, L).
+concat([H|T_L1], L2, [H|T_L3]) :-       
+    concat(T_L1, L2, T_L3).
+
+%--------------------------------------------------------------------------------------------------
+% xv. Construir a extensão do predicado «inverter» que inverte a ordem dos elementos de uma lista;
+%---------------------------------------------------------------------------------------------------
+
+inverter([], []).
+inverter([H|T], List) :-
+    inverter(T, TempList),
+    concat(TempList, [H], List).
+
+%-----------------------------------------------------------------------------------------------------------------
+% xvi. Construir a extensão do predicado «sublista» que determina se uma lista S é uma sublista de outra lista L.
+%-----------------------------------------------------------------------------------------------------------------
+
+sublist(S, L) :-
+    concat(_, L2, L),
+    concat(S, _, L2).
