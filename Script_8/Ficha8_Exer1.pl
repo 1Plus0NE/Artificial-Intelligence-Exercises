@@ -78,8 +78,34 @@ media_aluno(AlunoCod, Media) :-
 % iv. Quais os alunos cuja média é acima da média (considere todas as notas de todas as disciplinas);
 % ----------------------------------------------------------------------------------------------------
 
-% to do
+comprimento([], 0).
+comprimento([_|T], Comp) :-
+    comprimento(T, Result),
+    Comp is 1 + Result.
 
+soma_lista([], 0).
+soma_lista([H|T], Soma) :-
+    soma_lista(T, Resto),
+    Soma is H + Resto.
+
+todas_notas(Lista) :-
+    findall(N, nota(_, _, N), Lista).
+
+media_global(Media) :-
+    todas_notas(Notas),
+    soma_lista(Notas, S),
+    comprimento(Notas, N),
+    Media is S / N.
+
+acima_da_media(Lista) :-
+    media_global(MediaG),
+    findall((Cod, Nome, MediaAluno),
+             (
+                 aluno(Cod, Nome, _),
+                 media_aluno(Cod, MediaAluno),
+                 MediaAluno > MediaG
+             ),
+             Lista).
 % --------------------------------------------------------------------
 % v. Quais os nomes dos alunos que copiaram;
 % --------------------------------------------------------------------

@@ -52,9 +52,116 @@ requisicoes(9,5,7,data(2022,4,12)).
 %devolucoes(id_requisicao, data(A,M, D))
 
 
-devolucoes(2, data(2022, 7,26)).
-devolucoes(4, data(2022,2,4)).
+devolucoes(2, data(2022, 7, 26)).
+devolucoes(4, data(2022, 2, 4)).
 devolucoes(5, data(2022, 6, 13)).
 devolucoes(1, data(2022, 5, 23)).
 devolucoes(6, data(2022, 4, 9)).
 
+% -------------------------------------------------------------------------------------
+% i. Quantos leitores do sexo feminino existem representados na base de conhecimentos;
+% -------------------------------------------------------------------------------------
+
+leitoras(N) :-
+    findall(Id, leitores(Id, _, f), Lista),
+    length(Lista, N).
+
+% -------------------------------------------------------------------------------------
+% ii. Quais os livros que foram requisitados por leitores, mas que não se encontram
+%     associados a nenhuma biblioteca da base de conhecimento;
+% -------------------------------------------------------------------------------------
+
+livros_requisitados(LivrosFinal) :-
+    findall(IdLivro, requisicoes(_, _, IdLivro, _), Livros),
+    sort(Livros, LivrosFinal).
+
+livros_outras_bibliotecas(LivrosFinal) :-
+    livros_requisitados(LivrosReq),
+    include(sem_biblioteca, LivrosReq, LivrosFinal).
+
+sem_biblioteca(IdLivro) :-
+    livros(IdLivro, _, IdBib),
+    \+ biblioteca(IdBib, _, _).
+
+% -------------------------------------------------------------------------------------
+% iii. Indique quais os livros e os respetivos leitores que efetuaram requisições em
+%      bibliotecas situadas em Braga;
+% -------------------------------------------------------------------------------------
+
+livros_leitores_braga(Resultado) :-
+    findall((IdLivro, IdLeitor),
+        (
+            requisicoes(_, IdLeitor, IdLivro, _),
+            livros(IdLivro, _, IdBiblioteca),
+            biblioteca(IdBiblioteca, _, braga)
+        ),
+        Resultado
+    ).
+
+% -------------------------------------------------------------------------------------
+% iv. Quais os livros que não tiveram nenhuma requisição. Para esta questão, assuma
+%     requisição de livros que se encontram ou não em alguma biblioteca;
+% -------------------------------------------------------------------------------------
+
+livros_nao_requisitados(Livros) :-
+    findall(IdLivro,
+        (
+            livros(IdLivro, _, _),
+            \+ requisicoes(_, _, IdLivro, _)
+        ),
+        Livros
+    ).
+
+% ---------------------------------------------------------------------
+% v. Apresente a lista de livros, e a respetiva data de requisição,
+%    que tenham sido pedidos em 2022;
+% ---------------------------------------------------------------------
+
+livros_requisitados_2022(Resultado) :-
+    findall((IdLivro, Data),
+        (
+            requisicoes(_, _, IdLivro, Data),
+            Data = data(2022, _, _)
+        ),
+        Resultado
+    ).
+
+% --------------------------------------------------------------------------------
+% vi. Que leitores requisitaram livros no Verão. Assuma que o Verão se encontra
+%     compreendido entre Julho e Setembro;
+% --------------------------------------------------------------------------------
+
+verao(data(_, Mes, _)) :-
+    Mes >= 7,
+    Mes =< 9.
+    
+requisitados_verao(Leitores) :-
+    findall(IdLeitor,
+        (
+            requisicoes(_, IdLeitor, _, Data),
+            verao(Data)
+        ),
+        Leitores
+    ).
+
+% ---------------------------------------------------------------------------------------------
+% vii. Assumindo que o período máximo de devolução de um livro depois da requisição é de
+% no máximo 15 dias, indique quais os leitores, que entregaram um livro depois da data limite.
+% ---------------------------------------------------------------------------------------------
+
+dias(data(A, M, D), TotalDias) :-
+    TotalDias is A*365 + M*30 + D.
+
+diferenca_dias(Data1, Data2, Dif) :-
+    dias(Data1, D1),
+    dias(Data2, D2),
+    Dif is D2 - D1.
+    
+atraso(DataReq, DataDev) :-
+    diferenca_dias(DataReq, DataDev, Dif),
+    Dif > 15.
+
+leitores_atrasados(Leitor) :-
+    requisicoes(IdReq, Leitor, _, DataReq),
+    devolucoes(IdReq, DataDev),
+    atraso(DataReq, DataDev).
